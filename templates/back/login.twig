@@ -1,0 +1,28 @@
+{% extends ["back/layouts/base.twig"] %}
+
+{% block css %}
+  <link rel="stylesheet" href="{{ dir }}/common/css/backend/login.css" media="all">
+{% endblock css %}
+
+
+{% block contents %}
+  <div id="wrapper">
+    <div id="login">
+      <h1 id="login-title"><img src="{{ dir }}/common/img/login_logo.svg" width="500" alt="まち歩きで郡山の魅力再発見"></h1>
+
+      {% if error_flg %}
+        <div id="error_message">ログインエラー</div>
+      {% endif %}
+
+      <form action="{{ dir }}/manage/main" id="loginForm" method="post">
+        <input type="text" name="manage_user" id="loginForm-user" class="text-long block" value="" placeholder="ユーザー名">
+        <input type="password" name="manage_password" id="loginForm-password" class="text-long block" value="" placeholder="パスワード">
+        <input name="manage_token" type="hidden" value="{{ token }}">
+
+        <input type="submit" value="ログイン" id="start" class="block">
+      </form>
+    </div>
+    <!-- /#login -->
+  </div>
+  <!-- /#wrapper -->
+{% endblock contents %}

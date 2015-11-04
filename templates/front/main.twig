@@ -1,0 +1,86 @@
+{% extends ["front/layouts/lower.twig"] %}
+
+{% block main %}
+  <div id="areaMap" class="jsLoad-Mapping"></div>
+  <!-- /#areaMap -->
+
+  <div id="areaEdit" class="jsClick-AreaEdit jsLoad-EditArea">
+    <a href="#" id="btnEdit" class="jsClick-BtnEdit"><i class="fa fa-pencil noEdits"></i><i class="fa fa-close onEdits"></i></a>
+
+    {% set fCls = 'signUp' %}
+    {% set fID = 'areaForm' %}
+    <form id="postForm" action="" method="post" enctype="multipart/form-data" target="postRequest">
+      <div id="areaFormContainer" class="jsLoad-EditArea">
+        <div id="{{ fID }}" class="newWrite {{ fCls }}">{# data-scrollable="y"#}
+          <div class="{{ fCls }}-cell photo">
+            <div class="photo-go">
+              <input type="file" class="jsChange-Edit" name="{{ constant('R_PHOTO') }}" id="{{ fID }}-camera" accept="image/*; capture=camera" value=""></div>
+
+            <div id="photoThumb" class="photo-thumb"></div>
+          </div>
+
+          <input type="text" name="{{ constant('R_NAME') }}" id="{{ fID }}-formName" class="{{ fCls }}-cell text-long jsChange-Edit" placeholder="名称" value="">
+
+          <input type="text" name="{{ constant('R_MAP') }}" id="{{ fID }}-formMapNumber" class="{{ fCls }}-cell text-long jsChange-Edit" placeholder="地図番号" value="">
+
+          <select name="{{ constant('R_CAT') }}" id="{{ fID }}-formCategory" class="{{ fCls }}-cell text-long">
+            <option value="0" id="cat-0">カテゴリを選択</option>
+            {% for key, cat in category %}
+              <option value="{{ key }}" id="cat-{{ key }}">{{ cat }}</option>
+            {% endfor %}
+          </select>
+
+
+          <div id="{{ fID }}-submit" class="{{ fCls }}-cell">
+
+            <div class="submit new">
+              <div class="submit-cell"><button type="submit" id="write-new" class="submit-link write" data-submit="new">登録</button>
+              </div>
+            </div>
+
+            <div class="submit edit">
+              <div class="submit-cell"><button type="submit" id="write-update" class="submit-link write" data-submit="update">更新</button>
+              </div>
+              <div class="submit-cell"><button type="submit" id="write-delete" class="submit-link delete" data-submit="delete">削除</button></div>
+            </div>
+
+
+            <input name="{{ constant('R_ADMIN') }}" type="hidden" value="{{ admin_code }}">
+            <input id="form_team" name="{{ constant('R_TEAM') }}" type="hidden" value="{{ ini.team_name|raw }}">
+            <input name="{{ constant('R_LAT') }}" type="hidden" id="map-lat" class="jsChange-Edit" value="">
+            <input name="{{ constant('R_LNG') }}" type="hidden" id="map-lng" class="jsChange-Edit" value="">
+            <input name="{{ constant('R_FILE_NAME') }}" type="hidden" id="{{ fID }}-photoFile" class="jsChange-Edit" value="">
+            <input name="{{ constant('R_ID') }}" type="hidden" id="{{ fID }}-dataID" class="jsChange-Edit" value="">
+            <input name="{{ constant('R_MAP_GEO') }}" type="hidden" id="mapGeo" value="false">
+          </div>
+        </div>
+        <!-- /#areaForm -->
+      </div>
+      <!-- /#areaFormContainer -->
+    </form>
+  </div>
+  <!-- /#areaEdit -->
+
+  <div id="areaList" class="jsClick-AreaList portrait">
+    <div id="areaList-container" class="jsLoad-setList">
+      <div id="areaList-information">
+        <p>リストを右から左へスワイプすると削除することが出来ます。<br>3秒以内に削除取り消しを押すと元に戻ります。</p>
+      </div>
+      <!-- /#areaList-information -->
+
+      <div id="areaList-contents"></div>
+    </div>
+    <!-- /#areaList-container -->
+
+
+    <div id="areaList-loading" class="jsLoad-getList">
+      登録リストを取得中
+    </div>
+    <!-- /#areaList-loading -->
+  </div>
+  <!-- /#areaList -->
+
+{% endblock main %}
+
+
+

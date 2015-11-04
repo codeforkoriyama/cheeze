@@ -1,0 +1,16 @@
+<tr data-id="{{data_id}}" data-team="{{team}}" data-color="{{color}}" class="resultList{{cls}} jsClick-Move" data-lat="{{lat}}" data-lng="{{lng}}">
+  <td class="teamColor">
+    <div class="teamColor-box" style="background-color:#{{color}};">{{data_id}}</div>
+  </td>
+  <td>{{team}}</td>
+  <td>{{name}}</td>
+  <td>{{map_number}}</td>
+  <td>{{category}}</td>
+  <td class="resultList-image">
+    {{#photo_file}}
+      <a href="#" data-image="{{photo_file}}.jpg" class="jsClick-ModalImage"><i class="fa fa-camera-retro"></i></a>
+    {{/photo_file}}
+    {{^photo_file}}&nbsp;{{/photo_file}}
+  </td>
+  <td class="resultList-time created" data-created="{{created_at}}">{{created}}</td>
+</tr>

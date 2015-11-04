@@ -1,0 +1,50 @@
+{% extends ["front/layouts/base.twig"] %}
+
+
+
+
+
+{% block css %}
+  <link rel="stylesheet" href="{{ dir }}/common/css/frontend/portrait.css" media="all">
+  <link rel="stylesheet" href="{{ dir }}/common/css/frontend/landscape.css" media="all">
+{% endblock css %}
+
+
+
+
+
+{% block header_script %}
+  <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDTBL4EXKSCFswc9evSCxozMpk50eB0qfE&amp;sensor=true"></script>
+  <script src="{{ dir }}/common/{{ dir_js }}/Main.run.js"></script>
+  <script src="{{ dir }}/common/{{ dir_js }}/plugins/Mapping.js" async defer></script>
+{% endblock header_script %}
+
+
+
+
+
+
+
+
+{% block container %}
+  <div id="portrait" class="portrait">
+    {% include "front/layouts/header.twig" %}
+
+    <main id="main" role="main">
+      {% block main %}{% endblock %}
+    </main>
+  </div>
+  <!-- /#portrait -->
+
+  {% include "front/block/landscape.twig" %}
+{% endblock container %}
+
+
+{% block footer_script %}
+  <script src="{{ dir }}/common/{{ dir_js }}/plugins/Register.js" async defer></script>
+  <script src="{{ dir }}/common/{{ dir_js }}/plugins/RegistList.js" async defer></script>
+  <script src="{{ dir }}/common/{{ dir_js }}/plugins/EntryData.js" async defer></script>
+{% endblock footer_script %}
+
+
+

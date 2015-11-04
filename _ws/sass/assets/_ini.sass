@@ -1,0 +1,162 @@
+@charset "UTF-8"
+////////////////////////////////////////////////////////////////////////////////
+ / Copyright (c) 2015. dmp Inc. All Rights Reserved.
+ /
+ / @author: Nobuyuki Kondo
+ / @uri: http://www.dmp.co.jp
+ / @date: 2015/1/23
+ ///////////////////////////////////////////////////////////////////////////////
+@import "compass", "valiable"
+
+
+// Extend
+%clear-fix
+  clear: both
+  *zoom: 1
+
+  &:after
+    display: block
+    clear: both
+    content: ""
+    zoom: 1
+
+// ブロック要素の余白を内側にする
+%bx-sizing
+  -moz-box-sizing: border-box
+  box-sizing: border-box
+
+// インラインブロック
+%inline-block
+  display: inline-block
+  /* For IE 6/7 */
+  *display: inline
+  *zoom: 1
+
+
+// ベンダープレフィックス
+ / ===================================== /
+// クロスブラウザ
+=ven-prefix($property, $value)
+  @each $prefix in '-webkit-', '-moz-', '-o-', '-ms-', ''
+    #{$prefix}#{$property}: $value
+
+// Webkit系, Mozilla系のみ
+=webmoz-prefix($property, $value)
+  @each $prefix in '-webkit-', '-moz-', ''
+    #{$prefix}#{$property}: $value
+
+// webkitのみ
+=webkit-prefix($property, $value)
+  @each $prefix in '-webkit-', ''
+    #{$prefix}#{$property}: $value
+
+// よく使うMixin
+ / ===================================== /
+// 透過処理
+=opacity-data($alpha:60)
+  opacity: $alpha/100
+  -ms-filter: "alpha(opacity=#{$alpha})"
+  filter: alpha(opacity=$alpha)
+//background: rgba(255, 255, 255, 0.1)
+
+// イージング処理(単一プロパティ)
+=ease-in($property:opacity, $speed:0.5s, $ease:ease, $start:0s)
+  -webkit-transition: #{$property $speed $start $ease}
+  transition: #{$property $speed $start $ease}
+
+
+// justify
+=justify-inter()
+  text-align: justify
+  text-justify: inter-ideograph
+
+// justify
+=justify-news()
+  text-align: justify
+  text-justify: newspaper
+
+// justify:http://www.htmq.com/style/text-justify.shtml
+
+// 背景透過(IE対応版)
+=bgop($r:0, $g:0, $b:0, $alpha:0.8, $ies:ed000000, $iee:ed000000)
+  background: none
+  background: rgba($r, $g, $b, $alpha)
+  filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=##{$ies},EndColorStr=##{$iee})
+  &:not(:target)
+    filter: none
+    -ms-filter: none
+
+
+// 矢印
+=btn-arrow($color, $px)
+  position: relative
+
+  &:after
+    position: absolute
+    top: 50%
+    right: 10px
+    display: block
+    margin-top: -$px/2
+    width: $px
+    height: $px
+    border-top: 2px solid $color
+    border-right: 2px solid $color
+    content: ""
+    +ven-prefix(transform, rotate(45deg))
+
+
+// アニメーション系Mixin
+ / ===================================== /
+// アニメーション名
+=keyframe-name($name)
+  +ven-prefix(animation-name, $name)
+
+// アニメーションスピード
+=animate-duration($speed)
+  +ven-prefix(animation-duration, $speed)
+
+// アニメーションフレーム
+=keyframes($animation-name)
+  @-webkit-keyframes #{$animation-name}
+    @content
+  @-moz-keyframes #{$animation-name}
+    @content
+  @keyframes #{$animation-name}
+    @content
+
+
+// 操作系Mixin
+ / ===================================== /
+// 3D回転
+=rotate3d($x, $y, $z, $deg, $vis:hidden, $pers:1000)
+  -webkit-transform: rotate3d($x, $y, $z, $deg)
+  -ms-transform: rotate($x, $y, $deg)
+  transform: rotate3d($x, $y, $z, $deg)
+  -webkit-backface-visibility: $vis
+  -moz-backface-visibility: $vis
+  backface-visibility: $vis
+  -webkit-perspective: $pers
+  -moz-perspective: $pers
+  perspective: $pers
+
+// 3D移動
+=trans3d($x, $y, $z, $vis:hidden, $pers:1000)
+  -webkit-transform: translate3d($x, $y, $z)
+  -ms-transform: translate($x, $y)
+  transform: translate3d($x, $y, $z)
+  -webkit-backface-visibility: $vis
+  -moz-backface-visibility: $vis
+  backface-visibility: $vis
+  -webkit-perspective: $pers
+  -moz-perspective: $pers
+  perspective: $pers
+
+
+// 関数
+ / ===================================== /
+// フォントサイズ計算
+@function font-size-calc($target, $unit:'%', $parentPx:$_px_default)
+  @if $unit == '%'
+    @return percentage($target / $parentPx)
+  @else
+    @return #{$target / $parentPx}#{$unit}

@@ -1,0 +1,42 @@
+@charset "UTF-8"
+@import "../assets/ini"
+
+html
+  height: 100%
+
+body
+  background-color: $_color_main
+  background-image: linear-gradient(90deg, transparent 45%, rgba(#fff, .1) 40%)
+  background-size: 30px 30px
+  width: 100%
+  height: 100%
+
+#wrapper
+  position: relative
+  width: 100%
+  height: 100%
+
+
+#qr
+  display: table
+  width: 100%
+  height: 100%
+  @at-root
+    #{&}-container
+      display: table-cell
+      width: 100%
+      height: 100%
+      vertical-align: middle
+      text-align: center
+    #{&}-chart
+      margin-bottom: $_space
+    #{&}-url
+      font:
+        size: font-size-calc(16, '%')
+        weight: 600
+      color: #ffffff
+
+
+
+#message
+  display: none

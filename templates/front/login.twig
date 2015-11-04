@@ -1,0 +1,26 @@
+{% extends "front/layouts/base.twig" %}
+
+
+
+{% block css %}
+<link rel="stylesheet" href="{{ dir }}/common/css/frontend/top.css" media="all">
+{% endblock css %}
+
+
+{% block container %}
+  {% set block = 'login' %}
+  <div class="{{ block }}">
+    <h1 class="{{ block }}-title"><img src="{{ dir }}/common/img/login_logo.svg" width="200" alt="まち歩きで郡山の魅力再発見"></h1>
+
+    {% set form = block ~ 'Form' %}
+    <form class="{{ form }}" action="" method="post">
+      <input type="text" name="{{ constant('TEAM') }}" class="{{ form }}-team text-long block{{ error_class }}" value="{{ ini.team_name }}" placeholder="チーム名を入力してください">
+
+      <input class="{{ form }}-start block signUp" type="submit" value="スタート">
+    </form>
+  </div>
+  <!-- /#login -->
+
+
+{% endblock %}
+

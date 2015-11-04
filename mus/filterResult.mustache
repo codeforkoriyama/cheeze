@@ -1,0 +1,13 @@
+<li class="filterResult{{hidden}}" data-id="{{data_id}}" data-team="{{team}}" data-created="{{created_at}}">
+
+  <div class="filterResult-container">
+    {{#photo_file__v}}
+    <div class="filterResult-image filterResult-cell"><img src="{{uploads}}/{{photo_file}}" alt=""></div>
+    {{/photo_file__v}}
+
+    <div class="filterResult-name filterResult-cell">{{name}}</div>
+    <div class="filterResult-team filterResult-cell">{{team}}</div>
+    <div class="filterResult-date filterResult-cell">{{time}}</div>
+  </div>
+  <!-- /.filterResult-container -->
+</li>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ Copyright (c) 2015. Code for KORIYAMA. All Rights Reserved.
+  ~
+  ~ @author: Nobuyuki Kondo
+  ~ @uri: http://koriyama.io/
+  ~ @date: 2015/5/9
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<backend>
+  <user name="admin">
+    <password>000000000000000000000000000000000000000000000000000000</password>
+    <lebel>0</lebel>
+  </user>
+</backend>

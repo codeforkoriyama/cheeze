@@ -1,0 +1,20 @@
+{% set name = 'landscape' %}
+<div id="{{ name }}" class="hide landscape">
+  <div id="{{ name }}-container">
+
+    {#select#}
+    <div id="{{ name }}-select">
+      <select name="filter_team" id="teamFilter">
+        <option value="0">チーム名で絞り込む</option>
+      </select>
+    </div>
+    {#/select#}
+
+    {#result#}
+    <ol id="{{ name }}-result">
+    </ol>
+    {#/result#}
+
+  </div>
+</div>
+<!-- /#landscape -->

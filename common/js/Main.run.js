@@ -1,0 +1,1 @@
+var isLandScape=function(){var a=Math.abs(window.orientation);if(a===90){$(".portrait").addClass("hide");$(".landscape").removeClass("hide")}else{$(".portrait").removeClass("hide");$(".landscape").addClass("hide")}};jQuery(function(a){if(Cmn.device.pc===false){isLandScape();a(window).on("resize orientationchange",function(){isLandScape()})}});

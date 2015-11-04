@@ -1,0 +1,9 @@
+{
+  "title":"郡山まちあるきデザインプロジェクト in まちなか",
+  "description":"",
+  "code":"machinaka",
+  "mainColor": "#00aedd",
+  "subColor": "#2e9630",
+  "write_file": "mapping.xml",
+  "root_file": "root.xml"
+}

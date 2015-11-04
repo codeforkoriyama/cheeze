@@ -1,0 +1,66 @@
+{% extends ["back/layouts/base.twig"] %}
+
+{% block css %}
+  <link rel="stylesheet" href="{{ dir }}/common/css/backend/main.css" media="all">
+{% endblock css %}
+
+
+
+{% block header_script %}
+  <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDTBL4EXKSCFswc9evSCxozMpk50eB0qfE&amp;sensor=false"></script>{% endblock header_script %}
+
+
+
+
+
+{% block contents %}
+  {% include "back/layouts/header.twig" %}
+
+  <div id="wrapper">
+    <div id="filter">
+      <select name="team" id="filter-team" class="jsAjax-filterTeam">
+        <option value="0">すべて</option>
+      </select>
+
+      <div id="entryTotal">
+        <a href="#" id="entryTotal-btn" class="jsClick-modal">T</a>
+        <ul id="entryTotal-data" class="jsTimer-Total"></ul>
+      </div>
+    </div>
+    <!-- /#filter -->
+
+    <div id="resultMap"></div>
+    <!-- /#resultMap -->
+
+    <table id="resultList">
+      <thead>
+      <tr>
+        <th id="tb-color">&nbsp;</th>
+        <th id="tb-team">チーム名</th>
+        <th id="tb-name">名称</th>
+        <th id="tb-map">地図番号</th>
+        <th id="tb-cat">カテゴリ</th>
+        <th id="tb-img">画像</th>
+        <th id="tb-created">登録時間</th>
+      </tr>
+      </thead>
+      <tbody id="resultListBody"></tbody>
+    </table>
+    <!-- /#resultList -->
+
+  </div>
+  <!-- /#wrapper -->
+
+
+  {% include "back/layouts/footer.twig" %}
+{% endblock contents %}
+
+
+
+
+
+
+
+{% block footer_script %}
+  <script src="{{ dir }}/common/{{ dir_js }}/plugins/BackendMapping.js"></script>
+{% endblock footer_script %}

@@ -1,0 +1,19 @@
+<li class="registData" data-name="{{name}}" data-id="{{data_id}}" data-map="{{map_number}}" data-cat="{{cat}}" data-lat="{{lat}}" data-lng="{{lng}}" data-file="{{photo_file}}" data-mapGeo="{{google_map_geo}}" data-created="{{created_at}}" data-updated="{{updated_at}}">
+
+  <div class="registData-return registData-size">
+    <a href="#" class="jsClick-Return">削除を取り消す</a>
+  </div>
+  <!-- /.registData-ReturnData -->
+
+  <div class="registData-show registData-size regist jsSwipe-Delete">
+    <div class="regist-setting regist-cell"><a href="#" id="registData-edit" class="regist-link jsClick-Process" data-process="edit"><span class="fa fa-edit"></span></a></div>
+    {{!<div class="regist-setting regist-cell"><a href="#" id="registData-delete" class="regist-link jsClick-Process" data-process="delete"><span>削除</span></a></div>}}
+
+    <div class="regist-name regist-cell">{{name}}</div>
+
+    {{#photo_file}}
+    <div class="regist-thumb regist-cell"><img src="{{dir}}/uploads/{{photo_file}}_thumb.jpg" alt="" width="50" height="50"></div>
+    {{/photo_file}}
+  </div>
+</li>
+

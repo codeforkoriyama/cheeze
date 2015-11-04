@@ -1,0 +1,397 @@
+@charset "UTF-8"
+@import "../assets/ini"
+
+
+//*********** ヘッダー ***************//
+#header
+  $h: 50px
+  height: $h
+  display: table
+  table-layout: fixed
+  width: 100%
+  background: $_color_main
+  @at-root
+    #{&}-title
+      display: table-cell
+      vertical-align: middle
+      overflow: hidden
+      white-space: nowrap
+      text-overflow: ellipsis
+      color: #fff
+      font:
+        size: font-size-calc(15, '%')
+      padding: 0 0 0 ($_space / 2)
+
+    #{&}-listMenu
+      display: table-cell
+      width: $h
+      height: $h
+      color: #ffffff
+      vertical-align: middle
+      text-align: center
+      font-size: font-size-calc(20, '%')
+      background: shade($_color_main, 20%)
+      text-decoration: none
+      .openList
+        display: none
+      &.show
+        .closeList
+          display: none
+        .openList
+          display: inline
+
+
+
+//*********** Main ***************//
+#main
+  overflow: hidden
+  position: relative
+  z-index: $_zContainer
+
+#areaMap
+  background: #eeeeee
+  position: relative
+  z-index: $_zContainer
+  +ease-in(height, 0.3s, ease)
+  label
+    width: auto
+    display: inline
+  img
+    max-width: none
+
+
+//  投稿エリア
+#areaEdit
+  position: relative
+  z-index: $_zContainer + 20
+
+// 投稿ボタン
+#btnEdit
+  $h: 60px
+  position: absolute
+  top: -(($h * 2) + 10)
+  right: $h / 2
+  width: $h
+  height: $h
+  background: $_color_main
+  color: #ffffff
+  line-height: $h
+  text-align: center
+  border-radius: $h / 2
+  z-index: $_zContainer + 50
+  box-shadow: 2px 2px 4px #999
+  text-decoration: none
+  font-size: font-size-calc(22, '%')
+  +ease-in(all, 0.3s, ease)
+  .onEdits
+    display: none
+  &.onEdit
+    top: -($h / 2)
+    bottom: 0
+    .onEdits
+      display: inline
+    .noEdits
+      display: none
+
+
+//*********** Form ***************//
+#areaFormContainer
+  @extend %bx-sizing
+  padding: 0 $_space
+  //padding: 50px $_space ($_space * 1.5)
+  position: relative
+  height: 100%
+  //overflow: hidden
+  overflow:
+    x: hidden
+    y: auto
+  -webkit-overflow-scrolling: touch
+  //backface-visibility: hidden
+  //perspective: 1000
+  //transform: translate3d(0, 0, 0)
+
+
+#areaForm-formName.error
+  animation: errorInput 0.2s ease 0s
+  background: tint($_red, 70%)
+  backface-visibility: hidden
+
+
+.signUp
+  @extend %bx-sizing
+  //position: relative
+  position: absolute
+  top: 0
+  left: 0
+  padding: 50px $_space ($_space * 1.5)
+  //backface-visibility: hidden
+  //perspective: 1000
+  @at-root
+    #{&}-cell
+      margin-bottom: $_space
+      &:nth-last-child(2)
+        margin-bottom: $_space * 2
+      &:last-child
+        padding-bottom: $_space
+
+
+// Submit
+.submit
+  display: table
+  table-layout: fixed
+  &.new
+    width: 50%
+    margin: 0 auto
+    .submit-cell
+      width: 100%
+  &.edit
+    width: 100%
+    .submit-cell
+      width: 50%
+      &:first-child
+        padding-right: $_space / 2
+      &:last-child
+        padding-left: $_space / 2
+  @at-root
+    $h: 50px
+    #{&}-cell
+      @extend %bx-sizing
+      display: table-cell
+      height: $h
+      text-align: center
+      font-size: font-size-calc(15, '%')
+    #{&}-link
+      text-decoration: none
+      display: block
+      width: 100%
+      height: 100%
+      vertical-align: middle
+      background-color: #eeeeee
+      line-height: $h
+      border-radius: 5px
+      cursor: pointer
+      &.write
+        background-color: $_btn_signUp
+      &.delete
+        background-color: $_btn_delete
+      &#write-new, &#write-update, &#write-delete
+        color: #ffffff
+
+
+
+.newWrite .submit.edit
+  display: none
+
+.editWrite .submit.new
+  display: none
+
+
+
+
+#upLoads-thumb
+  padding-top: $_space
+  margin-bottom: $_space / 2
+  position: relative
+
+#upLoads-delete
+  $h: 40px
+  $w: 40px
+  position: absolute
+  top: $_space
+  right: 0
+  display: block
+  height: $h
+  width: $h
+  line-height: $h
+  text-align: center
+  background: $_red
+  color: #ffffff
+  text-decoration: none
+  margin-bottom: $_space * 3
+  //border-radius: 5px
+  font-size: font-size-calc(18, '%')
+
+
+
+
+
+
+//*********** 登録リスト ***************//
+#areaList
+  @extend %bx-sizing
+  padding: ($_space * 2) 0
+  position: fixed
+  width: 100%
+  overflow:
+    x: hidden
+    y: auto
+  top: 40px
+  left: 100%
+  background: #ffffff
+  z-index: $_zRegistLit
+  transform: translate3d(0, 0, 0)
+  //backface-visibility: hidden
+  +ease-in(all, 0.3s, ease)
+  &.show
+    left: 0
+  &.scroll
+    -webkit-overflow-scrolling: touch
+
+  @at-root
+    #{&}-loading
+      position: relative
+      visibility: visible
+      opacity: 1
+      text-align: center
+      +ease-in(all, 0.3s, ease)
+      &.hide
+        visibility: hidden
+        opacity: 0
+        z-index: -1
+    #{&}-container
+      position: relative
+      visibility: hidden
+      opacity: 0
+      z-index: -1
+      +ease-in(all, 0.3s, ease)
+      &.show
+        visibility: visible
+        opacity: 1
+        z-index: $_zRegistLit
+
+    #{&}-information
+      padding: 0 $_space $_space
+      p:last-child
+        margin-bottom: 0
+
+    #{&}-contents
+      .noData
+        margin-bottom: 0
+        text-align: center
+
+
+#registInfo
+  margin-bottom: $_space
+
+
+#registListData
+  list-style: none
+  border-top: 1px solid #ccc
+  +ease-in(all, 0.3s, ease)
+  @at-root
+    #{&}-hidden
+      display: none
+
+.registData
+  width: 100%
+  height: $_regist_height
+  border-bottom: 1px solid #cccccc
+  position: relative
+  z-index: $_zContainer
+  &.delete
+    transform: scale(0)
+    transition: transform 0.3s cubic-bezier(0.680, -0.550, 0.265, 1.550)
+  &:nth-child(even)
+    .regist
+      background: #ffffff
+  &:nth-child(odd)
+    .regist
+      background: #eee
+  @at-root
+    #{&}-size
+      width: 100%
+      height: $_regist_height
+
+    #{&}-return
+      position: relative
+      z-index: $_zContainer
+      text-align: center
+      width: 100%
+      height: $_regist_height
+      background: $_color_success
+      a
+        line-height: $_regist_height
+
+    #{&}-show
+      position: absolute
+      backface-visibility: hidden
+      top: 0
+      left: 0
+      z-index: $_zContainer + 1
+
+.regist
+  width: 100%
+  height: 60px
+  display: table
+  table-layout: fixed
+  @at-root
+    #{&}-cell
+      height: 100%
+      display: table-cell
+
+    #{&}-setting
+      width: 60px
+      height: 60px
+      //vertical-align: middle
+
+    #{&}-link
+      display: table
+      width: 100%
+      height: 100%
+      text-align: center
+      span
+        display: table-cell
+        vertical-align: middle
+
+    #{&}-name
+      overflow: hidden
+      padding: 0 10px
+      vertical-align: middle
+      white-space: nowrap
+      text-overflow: ellipsis
+      //background: #ffffff
+
+    #{&}-thumb
+      @extend %bx-sizing
+      width: 60px
+      height: 60px
+      overflow: hidden
+      vertical-align: middle
+      padding: 5px
+      img
+        @extend %bx-sizing
+        overflow: hidden
+        display: block
+        margin: 0 auto
+        text-align: center
+        height: 50px
+        width: 50px
+
+
+#registData-edit
+  //background: tint($_green, 20%)
+  //color: #ffffff
+  color: tint($_green, 20%)
+  text-decoration: none
+  font-size: font-size-calc(18, '%')
+
+#registData-delete
+  background: tint($_red, 20%)
+  color: #ffffff
+
+
+
+
+
+
+
+
+.portrait
+  position: fixed
+  top: 0
+  left: 0
+  visibility: visible
+  z-index: 1
+  &.hide
+    visibility: hidden
+    z-index: -1!important

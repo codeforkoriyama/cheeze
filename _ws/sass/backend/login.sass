@@ -1,0 +1,49 @@
+@charset "UTF-8"
+@import "../assets/ini"
+
+html
+  height: 100%
+
+body
+  background-color: $_color_main
+  background-image: linear-gradient(90deg, transparent 45%, rgba(#fff, .1) 40%)
+  background-size: 30px 30px
+  width: 100%
+  height: 100%
+
+
+//*********** Login ***************//
+#wrapper
+  display: table
+  width: 100%
+  height: 100%
+  table-layout: fixed
+
+#login
+  display: table-cell
+  vertical-align: middle
+  text-align: center
+  @at-root
+    #{&}-title
+      margin-bottom: $_space * 2
+
+
+#error_message
+  color: $_red
+  margin-bottom: $_space * 2
+  font:
+    weight: 600
+    size: font-size-calc(20, '%')
+
+#loginForm
+  width: 600px
+  margin: 0 auto
+  @at-root
+    #{&}-user, #{&}-password
+      margin-bottom: $_space
+
+
+#start
+  background: $_btn_signUp
+  color: #ffffff
+  width: 200px

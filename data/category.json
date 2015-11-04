@@ -1,0 +1,19 @@
+{
+  "restaurant":"レストラン",
+  "cafe":"カフェ",
+  "fast_food":"ファーストフード",
+  "pub;bar;restaurant":"居酒屋、bar",
+  "bakery":"パン屋",
+  "convenience":"コンビニエンスストア",
+  "hairdresser":"美容室・床屋",
+  "beverages":"酒屋などの飲料店",
+  "hospital":"病院",
+  "school":"学校・教育",
+  "public":"公共施設",
+  "park":"公園",
+  "confectionery":"菓子店",
+  "hotel":"ホテル",
+  "clothes":"衣料品店",
+  "place_of_worship":"寺院",
+  "other":"その他"
+}

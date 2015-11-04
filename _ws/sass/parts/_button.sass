@@ -1,0 +1,34 @@
+@charset "UTF-8"
+@import "../assets/ini"
+
+.abtn
+  $h: 40px
+  display: block
+  height: $h
+  line-height: $h
+  text-align: center
+  text-decoration: none
+  border-radius: ($h / 2)
+  border: 1px solid #cccccc
+  color: $_link_default
+  &:hover
+    color: $_link_default
+    +opacity-data
+  &.eo
+    +ease-in
+    &.black
+      background: $_black
+      color: #ffffff
+      border: 1px solid $_black
+  &.ec
+    +ease-in(all, 0.5s, ease)
+    &:hover
+      +opacity-data(100)
+    &.black
+      background: $_black
+      color: #ffffff
+      border: 1px solid $_black
+      &:hover
+        background: #ffffff
+        color: $_black
+

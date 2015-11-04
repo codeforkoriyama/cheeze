@@ -1,0 +1,155 @@
+@charset "UTF-8"
+@import "assets/reset", "assets/valiable"
+
+html
+  width: 100%
+  height: 100%
+
+body
+  margin: 0
+  padding: 0
+  width: 100%
+  height: 100%
+  font: #{$_px_default}px/1 $_font_default
+  background-color: #fff
+  color: $_color_text
+  //-webkit-font-smoothing: antialiased
+  -webkit-text-size-adjust: none
+  letter-spacing: 0.05em
+  position: fixed
+  &.disable
+    pointer-events: none
+
+a
+  &:link
+    color: $_link_default
+  &:visited
+    color: $_link_visited
+  &:hover
+    color: $_link_hover
+  &:active
+    color: $_link_active
+
+p
+  line-height: 1.5
+
+img
+  max-width: 100%
+  height: auto
+  display: inline-block
+
+//*********** 設定ファイル呼び出し ***************//
+@import "assets/ini"
+
+//*********** 共通クラス ***************//
+.block
+  display: block
+  margin: 0 auto
+
+.iBlock
+  display: inline-block
+
+//*********** Form デフォルト設定 ***************//
+input[type^=text],
+textarea
+  $h: 30px
+  @extend %bx-sizing
+  height: $h
+  line-height: $h
+  padding: 5px
+  border: 1px solid $_color_main
+  vertical-align: middle
+  -webkit-appearance: none
+  border-radius: round($h / 10)
+  +ease-in(all, 0.3s, ease)
+  &:focus
+    background: lighten($_color_main, 50%)
+
+select
+  $h: 30px
+  @extend %bx-sizing
+  height: $h
+  line-height: $h
+
+input[type^=submit],
+button[type^=submit]
+  $h: 40px
+  @extend %bx-sizing
+  -webkit-appearance: none
+  background: none
+  border: none
+  height: $h
+  line-height: $h
+  cursor: pointer
+  padding: 0 10px
+  background: $_color_dummy
+  border-radius: round($h / 10)
+  font-size: font-size-calc($_px_default, '%')
+  +ease-in(all, 0.3s, ease)
+  &.signUp
+    background: $_btn_signUp
+    color: #ffffff
+    &:focus
+      background: lighten($_btn_signUp, 20%)
+
+
+.text-long
+  width: 100%
+
+
+//*********** 必要なパーツ読み込み ***************//
+//@import "parts/util", "parts/button"
+
+
+//*********** Message ***************//
+#message
+  position: fixed
+  display: table
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  overflow: hidden
+  background: rgba(#fff, 0.6)
+  table-layout: fixed
+  visibility: hidden
+  z-index: -1
+  opacity: 0
+  +ease-in(all, 0.3s, ease)
+  &.show
+    visibility: visible
+    z-index: 999
+    opacity: 1
+  @at-root
+    #{&}-area
+      width: 100%
+      display: table-cell
+      text-align: center
+      vertical-align: middle
+    #{&}-text
+      padding: $_space 0
+      &.process
+        background: tint($_green, 40%)
+      &.success
+        background: $_color_success
+      &.error
+        color: #ffffff
+        background: $_color_error
+
+//*
+//  -webkit-backface-visibility: hidden
+
+
+
++keyframes(errorInput)
+  $px: 20px
+  0%
+    transform: translate3d(-$px, 0, 0)
+  30%
+    transform: translate3d($px, 0, 0)
+  60%
+    transform: translate3d(-$px, 0, 0)
+  90%
+    transform: translate3d($px, 0, 0)
+  100%
+    transform: translate3d(0, 0, 0)

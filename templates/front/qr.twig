@@ -1,0 +1,16 @@
+{% extends "front/layouts/base.twig" %}
+
+{% block css %}
+  <link rel="stylesheet" href="{{ dir }}/common/css/frontend/qr.css" media="all">
+{% endblock css %}
+
+{% block container %}
+  <div id="qr">
+    <div id="qr-container">
+      <div id="qr-chart"><img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=http://apps.koriyama.io/machiaruki/" alt=""></div>
+      <div id="qr-url">http://apps.koriyama.io/machiaruki/</div>
+    </div>
+    <!-- /#qr-container -->
+  </div>
+  <!-- /#qr -->
+{% endblock container %}

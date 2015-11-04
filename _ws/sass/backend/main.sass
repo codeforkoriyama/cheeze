@@ -1,0 +1,136 @@
+@charset "UTF-8"
+@import "../assets/ini"
+
+
+
+
+
+//*********** フィルター ***************//
+#filter
+  margin-bottom: $_space
+  display: table
+  width: 100%
+  @at-root
+    #{&}-team
+      display: table-cell
+      background: #ffffff
+      width: 30em
+      padding: 3px
+
+#entryTotal
+  display: table-cell
+  position: relative
+  z-index: 300
+  text-align: right
+  width: 40px
+  @at-root
+    #{&}-btn
+      display: block
+      width: 40px
+      height: 40px
+      border-radius: 20px
+      line-height: 40px
+      text-align: center
+      background: $_color_main
+      color: #ffffff
+    #{&}-data
+      position: absolute
+      width: 300px
+      top: 0
+      right: 50px
+      z-index: 350
+      background: #ffffff
+      padding: 20px
+      box-shadow: 0 0 3px #ccc
+      list-style: none
+      border-radius: 5px
+      opacity: 0
+      visibility: hidden
+      +ease-in(all, 0.3s, ease)
+      &.show
+        opacity: 1
+        visibility: visible
+      li
+        line-height: 2.1
+
+
+
+//*********** Map ***************//
+#resultMap
+  width: 100%
+  height: 500px
+  background: #eeeeee
+  border: 1px solid #cccccc
+  margin-bottom: $_space
+  label
+    width: auto
+    display: inline
+  img
+    max-width: none
+
+
+
+
+//*********** Result ***************//
+$result_border: 1px solid #ccc
+#resultList
+  width: 100%
+  table-layout: fixed
+  th, td
+    padding: $_space / 2
+    line-height: 1.5
+  thead
+    border: 1px solid $_green
+  th
+    text-align: center
+    background: tint($_green, 30%)
+    border-left: $result_border
+    &:first-child
+      border-left: none
+    &#tb-color
+      width: 30px
+    &#tb-map
+      width: 80px
+    &#tb-img
+      width: 30px
+  tbody
+    border:
+      left: $result_border
+      right: $result_border
+      bottom: $result_border
+    tr
+      border: $result_border
+      &:hover
+        background: $_color_success
+      &.active
+        background: darken($_color_success, 20%)
+      td
+        border-left: $result_border
+        &:first-child
+          border-left: none
+
+.resultList
+  position: relative
+  &.hide
+    display: none
+  @at-root
+    #{&}-image
+      vertical-align: middle
+      text-align: center
+      font-size: font-size-calc(18, '%')
+    #{&}-time
+      text-align: right
+
+
+.teamColor
+  vertical-align: middle
+  @at-root
+    #{&}-box
+      $size: 30px
+      //width: $size
+      height: $size
+      margin: 0 auto
+      text-align: center
+      line-height: $size
+
+//*********** Footer ***************//
