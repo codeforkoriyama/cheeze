@@ -7,7 +7,7 @@ MySQLなどのデータベースではなく、xmlをデータベースとして
 
 - PHP 5.4以上
 
-※mod_write必須
+※mod_rewrite必須
 
 ## 対象デバイス
 
