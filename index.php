@@ -59,7 +59,7 @@ $app->get('/qr', '\App\Controller\Other:qr');
 
 $app->get('/hash', function()use($app){
   /*
-  $pw = "c4kmanage";
+  $pw = "password";
   $md5 = MD5($pw);
 
   $pw2 = "password2".$md5;

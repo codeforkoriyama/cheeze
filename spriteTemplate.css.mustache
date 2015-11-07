@@ -1,0 +1,77 @@
+{
+  'functions': true
+}
+
+@import "compass"
+
+// テンプレート参考：https://github.com/twolfson/spritesheet-templates/blob/master/lib/templates/sass.template.mustache
+
+{{#items}}
+${{{name}}}-name: '{{name}}'
+${{{name}}}-x: {{px.x}}
+${{{name}}}-y: {{px.y}}
+${{{name}}}-offset-x: {{px.offset_x}}
+${{{name}}}-offset-y: {{px.offset_y}}
+${{{name}}}-width: {{px.width}}
+${{{name}}}-height: {{px.height}}
+${{{name}}}-total-width: {{px.total_width}}
+${{{name}}}-total-height: {{px.total_height}}
+${{{name}}}-image: '{{{escaped_image}}}'
+${{{name}}}: {{px.x}} {{px.y}} {{px.offset_x}} {{px.offset_y}} {{px.width}} {{px.height}} {{px.total_width}} {{px.total_height}} '{{{escaped_image}}}' '{{name}}'
+{{/items}}
+
+${{spritesheet_name}}-width: {{spritesheet.px.width}}
+${{spritesheet_name}}-height: {{spritesheet.px.height}}
+${{spritesheet_name}}-image: '{{{spritesheet.escaped_image}}}'
+${{spritesheet_name}}-sprites: {{#items}} ${{name}}{{/items}}
+${{spritesheet_name}}: {{spritesheet.px.width}} {{spritesheet.px.height}} '{{{spritesheet.escaped_image}}}' ${{spritesheet_name}}-sprites
+
+{{#options.functions}}
+%{{spritesheet_name}}-setting
+  content: ""
+  display: inline-block
+  *display: inline
+  *zoom: 1
+  overflow: hidden
+  vertical-align: middle
+
+=sprite_{{spritesheet_name}}-setting($sprite, $pxRetina:1)
+  $w: round(nth($sprite, 5) / $pxRetina)
+  $h: round(nth($sprite, 6) / $pxRetina)
+  $spriteOffset-x: (nth($sprite, 3) / $pxRetina)
+  $spriteOffset-y: (nth($sprite, 4) / $pxRetina)
+  $totalW: nth($sprite, 7) / $pxRetina
+  $totalH: nth($sprite, 8) / $pxRetina
+
+  &:before
+    @extend %{{spritesheet_name}}-setting
+    background-image: image-url(nth($sprite, 9))
+    background-position: $spriteOffset-x $spriteOffset-y
+    width: $w
+    height: $h
+    background-size: $totalW $totalH
+
+////////////////////////////////////////////////////////////////////////////////
+ / 個別Mixin
+ /
+ / 呼び出し方法：+spriteOne_{SpriteSheet名}-{スプライト名}(${接頭辞}-(元画像名), デバイスピクセル比)
+ / デバイスピクセル比はデフォルトが1。Retinaなどは2などをセット
+ ///////////////////////////////////////////////////////////////////////////////
+=spriteOne_{{spritesheet_name}}($sprite, $pxRetina:1)
+  +sprite_{{spritesheet_name}}-setting($sprite, $pxRetina)
+
+////////////////////////////////////////////////////////////////////////////////
+ / クラス全部をセット
+ /
+ / 呼び出し方法：+spriteAll_{SpriteSheet名}({スプライトシート名}_sprites, デバイスピクセル比)
+ / ※SpriteSheet名はgulpfile.jsのCSSスプライトタスクのcssSpritesheetNamemの値
+ / デバイスピクセル比はデフォルトが1。Retinaなどは2などをセット
+///////////////////////////////////////////////////////////////////////////////
+=spriteAll_{{spritesheet_name}}($sprites, $pxRetina:1)
+  @each $sprite in $sprites
+    $sprite-name: nth($sprite, 10)
+    .#{$sprite-name}
+      +sprite_{{spritesheet_name}}-setting($sprite, $pxRetina)
+
+{{/options.functions}}
+

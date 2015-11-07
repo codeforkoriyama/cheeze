@@ -1,9 +1,3 @@
-####################################################
-#
-# ※環境によっては利用できないので取扱注意！
-#
-####################################################
-
 # 環境モード設定(development || production)
 setEnv APPLICATION_ENV production
 
@@ -13,7 +7,7 @@ setEnv APPLICATION_ENV production
 # ? １文字ワイルドカード
 
 # アクセス不可能なファイル
-<Files ~ "^\.ht*|functions.php">
+<Files ~ "^\.ht*|functions.php|\.xml$">
 deny from all
 </Files>
 
@@ -34,55 +28,11 @@ RewriteRule application/(.*) index.php/$1 [QSA,NS,L]
 
 
 
-
-# Faviconの設定
-#AddType image/xicon .ico
-#<Files favicon.ico>
-#ErrorDocument 404 http://%{HTTP_HOST}/favicon.ico
-#</Files>
-
-# 長いHTML対策の圧縮処理
-#<IfModule mod_deflate.c>
-#AddOutputFilterByType DEFLATE text/html text/css application/x-javascript
-#</IfModule>
-
-# メンテナンスモード
-#<IfModule mod_rewrite.c>
-#  RewriteEngine On
-#  RewriteCond %{REQUEST_URI} !=/xxx.html
-#  RewriteCond %{REQUEST_URI} !/common/
-#  RewriteCond %{REQUEST_URI} !/img/
-#  RewriteCond %{REMOTE_ADDR} !=127.0.0.1
-#  RewriteCond %{REMOTE_ADDR} !='IPアドレス'
-#  RewriteRule ^.*$ /xxx.html [R=503,L]
-#</IfModule>
-
-#<IfModule mod_headers.c>
-#  Header set Retry-After "Thu, 8 Aug 2013 10:00:00 GMT"
-#</IfModule>
-
-
-
-
-
-# 最初に読むファイルを設定
-#php_value auto_prepend_file '絶対パス'
-
-
-# セッションにcookieを使用する場合(On, Off)
-#php_flg session.use_cookies On
-
-# セッション保持期間(0の場合はブラウザ終了時に破棄)
-#php_value session.cookie_lifetime 0
-
 # HTMLの<form>に自動的にhiddenを付ける場合(On, Off)
 php_flag session.use_trans_sid On
 
 # セッション情報の存続期間を設定
 php_value session.gc_maxlifetime 3600
-
-# セッションデータの保存場所
-#php_value session.save_path '(保存先の絶対パス)'
 
 
 php_value upload_max_filesize 5000M

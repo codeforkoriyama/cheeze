@@ -1,0 +1,41 @@
+{
+  "name": "machinaka",
+  "version": "1.0.0",
+  "description": "Hi",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Hi"
+  ],
+  "author": "Nobuyuki Kondo",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-cached": "^1.0.1",
+    "gulp-changed": "^1.1.0",
+    "gulp-compass": "^2.0.3",
+    "gulp-concat": "^2.4.1",
+    "gulp-haml": "^0.1.4",
+    "gulp-imagemin": "^2.1.0",
+    "gulp-kss": "0.0.2",
+    "gulp-pleeease": "^1.1.0",
+    "gulp-plumber": "^0.6.6",
+    "gulp-remember": "^0.2.2",
+    "gulp-ruby-haml": "0.0.3",
+    "gulp-ruby-sass": "^1.0.0-alpha",
+    "gulp-sourcemaps": "^1.2.8",
+    "gulp-stylestats": "^0.5.5",
+    "gulp-typescript": "^2.3.0",
+    "gulp-uglify": "^1.0.1",
+    "gulp-util": "^3.0.1",
+    "gulp-watch": "^1.1.0",
+    "gulp.spritesmith": "^2.5.0",
+    "node-notifier": "^4.0.2",
+    "run-sequence": "^1.0.2"
+  },
+  "dependencies": {
+    "imagemin-jpegoptim": "^4.0.0"
+  }
+}
